@@ -18,7 +18,7 @@ const createProduct = (sequelize) => {
         allowNull: false,
       },
       sale: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
     },
