@@ -6,41 +6,41 @@ const {
   updateProduct,
 } = require("../services/productService");
 
-const getListController = (req, res) => {
-  const productList = getList();
+const getListController = async (req, res) => {
+  const productList = await getList();
   if (productList) {
     res.status(200).send(productList);
   } else {
     res.status(404).send("NOT FOUND");
   }
 };
-const getProductByIdController = (req, res) => {
+const getProductByIdController = async (req, res) => {
   const { id } = req.params;
-  const product = getProductById(id);
+  const product = await getProductById(id);
   if (product) {
     res.status(200).send(product);
   } else {
     res.status(404).send("NOT FOUND");
   }
 };
-const createProductController = (req, res) => {
+const createProductController = async (req, res) => {
   const product = req.body;
-  const newProduct = createProduct(product);
+  const newProduct = await createProduct(product);
   res.status(201).send(newProduct);
 };
-const updateProductController = (req, res) => {
+const updateProductController = async (req, res) => {
   const { id } = req.params;
   const { name, price, amount, sale } = req.body;
-  const updatedProduct = updateProduct(id, name, price, amount, sale);
+  const updatedProduct = await updateProduct(id, name, price, amount, sale);
   if (updatedProduct) {
     res.status(200).send(updatedProduct);
   } else {
     res.status(404).send("NOT FOUND");
   }
 };
-const deleteProductController = (req, res) => {
+const deleteProductController = async (req, res) => {
   const { id } = req.params;
-  const deletedProduct = deleteProduct(id);
+  const deletedProduct = await deleteProduct(id);
   if (deleteProduct) {
     res.status(200).send(deletedProduct);
   } else {
